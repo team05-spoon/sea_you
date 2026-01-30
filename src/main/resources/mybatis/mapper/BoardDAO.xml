@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sea_you.dao.BoardDAO">
+
+  <!-- =========================
+       게시글 목록 (작성자 아이콘 m_image 포함)
+  ========================== -->
+  <select id="boardlistDao" resultType="com.sea_you.dto.BoardDTO">
+    SELECT
+      b.b_no,
+      b.b_title,
+      b.b_write,
+      b.b_memo,
+      b.b_date,
+      b.m_no,
+      m.m_image
+    FROM board b
+    JOIN member m ON b.m_no = m.m_no
+    ORDER BY b.b_no DESC
+  </select>
+
+  <!-- =========================
+       게시글 상세 (작성자 아이콘 m_image 포함)
+  ========================== -->
+  <select id="boardviewDao" resultType="com.sea_you.dto.BoardDTO">
+    SELECT
+      b.b_no,
+      b.b_title,
+      b.b_write,
+      b.b_memo,
+      b.b_date,
+      b.m_no,
+      m.m_image
+    FROM board b
+    JOIN member m ON b.m_no = m.m_no
+    WHERE b.b_no = #{b_no}
+  </select>
+
+  <!-- =========================
+       게시글 등록
+  ========================== -->
+  <insert id="insert" parameterType="com.sea_you.dto.BoardDTO">
+    INSERT INTO board (
+      b_no, b_title, b_write, b_memo, b_date, m_no
+    ) VALUES (
+      seq_board.NEXTVAL,
+      #{b_title, jdbcType=VARCHAR},
+      #{b_write, jdbcType=VARCHAR},
+      #{b_memo,  jdbcType=VARCHAR},
+      SYSDATE,
+      #{m_no,    jdbcType=INTEGER}
+    )
+  </insert>
+
+  <!-- =========================
+       게시글 수정
+  ========================== -->
+  <update id="update" parameterType="com.sea_you.dto.BoardDTO">
+    UPDATE board
+    SET
+      b_title = #{b_title, jdbcType=VARCHAR},
+      b_memo  = #{b_memo,  jdbcType=VARCHAR}
+    WHERE b_no = #{b_no, jdbcType=INTEGER}
+  </update>
+
+  <!-- =========================
+       게시글 삭제
+  ========================== -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM board
+    WHERE b_no = #{b_no}
+  </delete>
+
+</mapper>

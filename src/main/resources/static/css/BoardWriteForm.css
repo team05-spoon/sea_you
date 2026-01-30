@@ -1,0 +1,146 @@
+/* ===============================
+   BoardWrite.css
+   - Main.css 위에 덮어쓰기(추가)
+   - 배경/상단바 구조는 BoardList와 동일
+   =============================== */
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+/* ✅ 배경 레이어 (BoardList랑 동일) */
+.bg-wrap{
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.bg-img{
+  position: absolute;
+  inset: 0;
+  background: url("/images/background/Background.jpg") center / cover no-repeat;
+  transform: scale(1.03);
+  filter: saturate(1.05);
+}
+
+.bg-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  pointer-events: none;
+}
+
+/* ✅ 본문 래퍼 (상단바 가림 방지) */
+.board-write-main{
+  width: min(900px, 92%);
+  margin: 120px auto 60px;
+  color: #fff;
+}
+
+/* 헤더 */
+.board-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin: 10px 0 14px;
+}
+
+.board-title{
+  margin:0;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:-0.2px;
+  color:#fff;
+  text-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* ✅ 유리 카드 */
+.board-card{
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+  padding: 18px;
+}
+
+/* 폼 */
+.write-form{
+  display:grid;
+  gap:16px;
+}
+
+.field{
+  display:grid;
+  gap:8px;
+}
+
+.label{
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(255,255,255,.9);
+}
+
+.input, .textarea{
+  width:100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color:#fff;
+  padding: 12px 14px;
+  outline:none;
+}
+
+.input::placeholder,
+.textarea::placeholder{
+  color: rgba(255,255,255,.55);
+}
+
+.textarea{
+  min-height: 260px;
+  resize: vertical;
+}
+
+/* 버튼 */
+.btn-row{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top: 6px;
+}
+
+.btn-submit, .btn-cancel{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-weight: 900;
+  text-decoration:none;
+  cursor:pointer;
+  border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-submit{
+  background: rgba(255,255,255,.16);
+  color:#fff;
+}
+
+.btn-submit:hover{
+  background: rgba(255,255,255,.22);
+}
+
+.btn-cancel{
+  background: rgba(0,0,0,.10);
+  color:#fff;
+}
+
+.btn-cancel:hover{
+  background: rgba(255,255,255,.10);
+}

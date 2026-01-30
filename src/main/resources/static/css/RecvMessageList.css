@@ -1,0 +1,111 @@
+/* ===============================
+   RecvMessageList.css (SENT와 동일 크기/두께로 맞춤)
+=============================== */
+
+html, body { height: 100%; margin: 0; }
+
+/* 배경 레이어 고정 */
+.bg-wrap{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -10 !important;
+}
+
+/* ✅ 본문 컨테이너(보낸쪽지함과 동일) */
+.recv-msg-main{
+  position: relative;
+  z-index: 1;
+  width: min(1000px, 92%);
+  margin: 90px auto 60px;
+  color: #fff;
+}
+
+/* 제목 */
+.recv-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin: 0 0 15px;
+}
+.recv-title{
+  margin:0;
+  font-size:26px;
+  font-weight:800;
+  text-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* ✅ 유리 카드(보낸쪽지함과 동일) */
+.recv-card{
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* 테이블 */
+.recv-table{
+  width:100%;
+  border-collapse: collapse;
+}
+
+.recv-table thead th{
+  text-align:left;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  font-weight: 900;
+}
+
+/* ✅ tbody td 패딩 통일 */
+.recv-table tbody td{
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  vertical-align: top;
+  color: rgba(255,255,255,.88);
+}
+
+/* 링크 */
+.nick-link{
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+}
+.nick-link:hover{ text-decoration: underline; }
+
+.content{ color: rgba(255,255,255,.88); }
+.date{
+  color: rgba(255,255,255,.75);
+  white-space: nowrap;
+}
+
+/* ✅ 여기 핵심: “없습니다” 높이(=박스 두께) 보낸쪽지함처럼 */
+.recv-table .empty{
+  text-align:center;
+  padding: 26px 10px;          /* ← 박스 두께 결정 */
+  color: rgba(255,255,255,.75);
+  border-bottom: none;
+}
+
+/* 홈으로 */
+.btn-home{
+  display: inline-flex;
+  margin-top: 15px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.10);
+  border: 1px solid rgba(255,255,255,.22);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  align-items: center;
+}
+.btn-home:hover{ background: rgba(0,0,0,.18); }
+
+/* 모바일 */
+@media (max-width: 640px){
+  .recv-msg-main{ margin: 84px auto 50px; }
+  .recv-title{ font-size: 22px; }
+}

@@ -1,0 +1,114 @@
+/* ReportMemberView.css
+ * Main.css 위에 “신고 상세” 레이아웃만 추가/덮어쓰기
+ */
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+/* ✅ 상단바 아래 컨텐츠 영역 */
+.page{
+  position: relative;
+  z-index: 5;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 34px 18px 60px;
+}
+
+/* ✅ 투명(유리) 폼 박스 */
+.glass{
+  width: min(980px, 92vw);
+  border-radius: 18px;
+  padding: 22px 22px 18px;
+
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+  backdrop-filter: blur(12px);
+}
+
+/* 헤더 */
+.head .badge{
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: .08em;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.18);
+  margin-bottom: 10px;
+}
+
+.head .title{
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.meta{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+}
+.meta span{
+  color: rgba(255,255,255,0.65);
+  margin-right: 8px;
+}
+
+/* 내용 */
+.content{
+  margin-top: 18px;
+  padding: 16px 14px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.12);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* 버튼/액션 */
+.actions{
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.18);
+  cursor: pointer;
+}
+
+.btn:hover{
+  background: rgba(255,255,255,0.18);
+}
+
+.btn.danger{
+  background: rgba(255, 60, 60, 0.75);
+  border: 1px solid rgba(255, 120, 120, 0.45);
+}
+
+.btn.danger:hover{
+  background: rgba(255, 60, 60, 0.85);
+}

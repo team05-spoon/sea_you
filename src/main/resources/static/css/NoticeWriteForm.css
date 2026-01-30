@@ -1,0 +1,118 @@
+/* ===============================
+   NoticeWriteForm.css
+   - Main.css 위에 덮어쓰기
+   - 공지 작성 폼: 투명 글래스 카드
+   =============================== */
+
+.nw-main{
+  position: relative;
+  z-index: 5;
+  width: min(900px, calc(100% - 40px));
+  margin: 130px auto 80px; /* 상단바 공간 */
+  color: #fff;
+}
+
+.nw-card{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 24px 28px;
+}
+
+.nw-head{ margin-bottom: 16px; }
+
+.nw-title{
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.nw-sub{
+  margin: 8px 0 0;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.nw-form{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nw-row{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.nw-label{
+  padding-top: 10px;
+  font-weight: 900;
+  color: rgba(255,255,255,.92);
+}
+
+.nw-input,
+.nw-textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: #fff;
+  padding: 12px;
+  outline: none;
+}
+
+.nw-textarea{
+  min-height: 220px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.nw-input::placeholder,
+.nw-textarea::placeholder{
+  color: rgba(255,255,255,.55);
+}
+
+.nw-actions{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.btn-ghost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.18);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+.btn-ghost:hover{ transform: translateY(-1px); }
+
+.btn-primary{
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.20);
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+.btn-primary:hover{ transform: translateY(-1px); }
+
+@media (max-width: 520px){
+  .nw-row{ grid-template-columns: 1fr; }
+  .nw-label{ padding-top: 0; }
+}

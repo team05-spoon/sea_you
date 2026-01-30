@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="beach">
+
+  <select id="selectByPlace"
+          parameterType="string"
+          resultType="com.sea_you.dto.BeachDTO">
+    SELECT
+      bc_no,
+      bc_name,
+      bc_location,
+      bc_office,
+      bc_length,
+      bc_width,
+      bc_area,
+      bc_image,
+      es_id
+    FROM beach
+    WHERE bc_location LIKE '%' || #{value} || '%'
+    ORDER BY bc_name
+  </select>
+<update id="updateDao">
+    UPDATE beach
+    SET bc_image = #{bc_image}
+    WHERE bc_no = #{bc_no}
+</update>
+</mapper>

@@ -1,0 +1,272 @@
+/* ===============================
+   MemberWriteForm.css
+   - Main.css 유지 + 회원가입 폼만 예쁘게
+   =============================== */
+
+:root{
+  --card: rgba(20, 24, 35, .55);
+  --card2: rgba(10, 12, 18, .35);
+  --line: rgba(255,255,255,.16);
+  --text: #fff;
+  --muted: rgba(255,255,255,.75);
+}
+
+/* 페이지 레이아웃 */
+.page{
+  position: relative;
+  z-index: 5;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 46px 18px 80px;
+}
+
+/* 카드 */
+.card{
+  width: min(720px, 92vw);
+  background: linear-gradient(180deg, var(--card), var(--card2));
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+/* 헤더 */
+.card-head{
+  padding: 26px 26px 10px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.card-head .title{
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+.card-head .sub{
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* 폼 */
+.form{
+  padding: 18px 26px 26px;
+}
+.row{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 0;
+}
+.row label{
+  font-weight: 800;
+  font-size: 13px;
+  color: rgba(255,255,255,.9);
+}
+
+/* 입력 */
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="date"]{
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.22);
+  color: var(--text);
+  padding: 0 12px;
+  outline: none;
+}
+.form input[type="text"]::placeholder,
+.form input[type="password"]::placeholder{
+  color: rgba(255,255,255,.55);
+}
+.form input[type="text"]:focus,
+.form input[type="password"]:focus,
+.form input[type="date"]:focus{
+  border-color: rgba(255,255,255,.35);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.08);
+}
+
+/* 라디오 */
+.radio{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.radio label{
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(255,255,255,.9);
+}
+.radio input{
+  transform: translateY(1px);
+}
+
+/* 우편번호 영역 */
+.zip{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.zip input[type="text"]{
+  flex: 1;
+}
+
+/* 버튼 */
+.btn{
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.24);
+}
+
+/* 제출/리셋 */
+.actions{
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.10);
+}
+.btn.primary{
+  background: rgba(0, 200, 255, .18);
+  border-color: rgba(0, 200, 255, .35);
+}
+.btn.primary:hover{
+  background: rgba(0, 200, 255, .24);
+  border-color: rgba(0, 200, 255, .55);
+}
+.btn.ghost{
+  background: rgba(255,255,255,.08);
+}
+
+/* =========================
+   파일 업로드 커스텀(정리버전)
+========================= */
+.filebox{
+  display: grid;
+  gap: 10px;
+}
+
+/* 기본 input 숨기기 */
+.file-input{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* 버튼 + 파일명 한 줄 */
+.fileline{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* 선택 버튼 */
+.file-btn{
+  height: 44px;
+  min-width: 110px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.file-btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.24);
+}
+
+/* 파일명 표시 */
+.file-name{
+  flex: 1;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.85);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ✅ 미리보기: 큰 사진도 절대 안 깨지게 (여기 핵심 수정) */
+.file-preview{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+}
+.file-preview img{
+  width: 84px;
+  height: 84px;
+  border-radius: 18px;
+  object-fit: cover;        /* 비율 고정(크롭) */
+  object-position: center;  /* 중앙 */
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.18);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+
+  max-width: 100%;
+}
+
+/* 작은 화면 */
+@media (max-width: 640px){
+  .row{
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .actions{
+    justify-content: stretch;
+  }
+  .actions .btn{
+    flex: 1;
+  }
+  .fileline{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .file-btn{
+    width: 100%;
+  }
+}
+.input-text {
+  width: 100%; height: 40px; padding: 0 12px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2);
+  color: #fff; font-size: 14px; transition: 0.3s;
+}
