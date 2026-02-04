@@ -1,0 +1,155 @@
+/* ===============================
+   SearchList.css
+   - Main.css 위에 덮어쓰기(추가)
+   - 검색결과 페이지 전용
+   =============================== */
+
+.page-wrap{
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 120px auto 70px;
+  padding: 0 18px;
+}
+
+.page-card{
+  background: rgba(8,12,20,.78);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 70px rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 26px;
+}
+
+.page-head h1{
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.page-head .meta{
+  margin: 0 0 16px;
+  color: rgba(255,255,255,.82);
+  font-weight: 700;
+}
+.page-head .meta strong{ color:#fff; }
+
+.table-wrap{
+  margin-top: 16px;
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.result-table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 820px;
+}
+
+.result-table thead th{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.92);
+  text-align: left;
+  padding: 14px 14px;
+  font-weight: 900;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.result-table tbody td{
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.88);
+  vertical-align: middle;
+}
+
+.result-table tbody tr:hover{
+  background: rgba(255,255,255,.06);
+}
+
+.col-img{ width: 170px; }
+.thumb{
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+.col-name{ min-width: 160px; }
+.beach-link{
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+.beach-link:hover{
+  text-decoration: underline;
+}
+
+.col-bm{ width: 130px; text-align:center; }
+
+.btn-bookmark{
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.btn-bookmark:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.28);
+}
+.btn-bookmark:active{
+  transform: translateY(0);
+}
+
+.empty{
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.86);
+  font-weight: 800;
+}
+
+.page-foot{
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-back{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.btn-back:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.28);
+}
+
+@media (max-width: 720px){
+  .page-wrap{ margin-top: 110px; }
+  .page-card{ padding: 18px; border-radius: 16px; }
+  .page-head h1{ font-size: 20px; }
+}

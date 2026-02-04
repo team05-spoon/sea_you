@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sea_you.dao.FollowDAO">
+
+    <insert id="follow">
+        INSERT INTO FOLLOW (f_no, follower_no, following_no)
+        VALUES (SEQ_FOLLOW.NEXTVAL, #{follower_no}, #{following_no})
+    </insert>
+
+    <delete id="unfollow">
+        DELETE FROM FOLLOW 
+        WHERE follower_no = #{follower_no} AND following_no = #{following_no}
+    </delete>
+
+    <select id="checkFollow" resultType="int">
+        SELECT COUNT(*) FROM FOLLOW 
+        WHERE follower_no = #{follower_no} AND following_no = #{following_no}
+    </select>
+
+    <select id="getFollowerCount" resultType="int">
+        SELECT COUNT(*) FROM FOLLOW WHERE following_no = #{m_no}
+    </select>
+
+    <select id="getFollowingCount" resultType="int">
+        SELECT COUNT(*) FROM FOLLOW WHERE follower_no = #{m_no}
+    </select>
+    
+    <select id="getFollowerList" resultType="com.sea_you.dto.MemberDTO">
+    SELECT m.* FROM MEMBER m 
+    JOIN FOLLOW f ON m.m_no = f.follower_no 
+    WHERE f.following_no = #{m_no}
+	</select>
+
+	<select id="getFollowingList" resultType="com.sea_you.dto.MemberDTO">
+    SELECT m.* FROM MEMBER m 
+    JOIN FOLLOW f ON m.m_no = f.following_no 
+    WHERE f.follower_no = #{m_no}
+	</select>
+
+</mapper>

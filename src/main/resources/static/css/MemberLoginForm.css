@@ -1,0 +1,136 @@
+/* MemberLoginForm.css
+   - Main.css 위에 얹는 "로그인 페이지 전용" 덮어쓰기
+*/
+
+:root{
+  --glass: rgba(255,255,255,.12);
+  --glass2: rgba(255,255,255,.08);
+  --line: rgba(255,255,255,.18);
+  --text: #fff;
+  --muted: rgba(255,255,255,.75);
+}
+
+.login-wrap{
+  position: relative;
+  z-index: 5;
+  min-height: calc(100vh - 110px); /* 상단바 높이 감안 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px 60px;
+}
+
+.login-card{
+  width: min(420px, 92vw);
+  background: linear-gradient(180deg, var(--glass), var(--glass2));
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  padding: 26px 24px 22px;
+  text-shadow: 0 2px 14px rgba(0,0,0,.35);
+}
+
+.login-head{
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.login-brand{
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  letter-spacing: .4px;
+  font-size: 24px;
+}
+
+.login-sub{
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.login-form{
+  display: grid;
+  gap: 14px;
+}
+
+.field{
+  display: grid;
+  gap: 8px;
+}
+
+.field label{
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255,255,255,.9);
+}
+
+.field input{
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+  outline: none;
+}
+
+.field input::placeholder{
+  color: rgba(255,255,255,.55);
+}
+
+.field input:focus{
+  border-color: rgba(255,255,255,.38);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.08);
+}
+
+.login-alert{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,120,120,.35);
+  background: rgba(255,80,80,.12);
+  color: rgba(255,230,230,.95);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.login-btn{
+  margin-top: 4px;
+  height: 46px;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: #0b1220;
+  background: rgba(255,255,255,.92);
+}
+
+.login-btn:hover{
+  transform: translateY(-1px);
+}
+
+.login-foot{
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.login-foot a{
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.25);
+  padding-bottom: 2px;
+}
+
+.login-foot a:hover{
+  color: #fff;
+  border-bottom-color: rgba(255,255,255,.55);
+}
+
+/* 모바일에서 상단바 여백 조금 더 */
+@media (max-width: 520px){
+  .login-wrap{ min-height: calc(100vh - 92px); }
+  .login-card{ padding: 22px 18px 18px; border-radius: 18px; }
+}

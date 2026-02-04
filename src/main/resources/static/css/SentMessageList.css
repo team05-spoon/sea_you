@@ -1,0 +1,116 @@
+/* ===============================
+   SentMessageList.css (FIX)
+   - 박스(유리카드) 안에 tbody 내용/빈문구/버튼이 딱 들어오게
+   =============================== */
+
+html, body { height: 100%; margin: 0; }
+
+/* 배경 레이어 고정 */
+.bg-wrap{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -10 !important;
+}
+
+/* 본문 */
+.msg-main{
+  position: relative;
+  z-index: 1;
+  width: min(1000px, 92%);
+  margin: 90px auto 60px;
+  color: #fff;
+}
+
+/* 제목 */
+.msg-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin: 0 0 15px;
+}
+
+.msg-title{
+  margin:0;
+  font-size:26px;
+  font-weight:800;
+  text-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* ✅ 유리 카드 */
+.msg-card{
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* 테이블 */
+.msg-table{
+  width:100%;
+  border-collapse: collapse;
+}
+
+.msg-table thead th{
+  text-align:left;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  font-weight: 900;
+}
+
+/* ✅ 여기 핵심: tbody td도 박스 안에 “칸”처럼 들어오게 */
+.msg-table tbody td{
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  vertical-align: top;
+  color: rgba(255,255,255,.88);
+}
+
+/* 링크 */
+.title-link{
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+}
+.title-link:hover{ text-decoration: underline; }
+
+/* 내용/날짜 */
+.msg-content{ color: rgba(255,255,255,.88); }
+.msg-date{
+  color: rgba(255,255,255,.75);
+  white-space: nowrap;
+}
+
+/* ✅ 빈 문구: 박스 안에서 가운데 */
+.msg-table .empty{
+  text-align:center;
+  padding: 26px 10px;
+  color: rgba(255,255,255,.75);
+  border-bottom: none;
+}
+
+/* ✅ 홈으로 버튼: 카드 밖이 아니라 아래에서 정렬 깔끔하게 */
+.btn-home{
+  display: inline-flex;
+  margin-top: 15px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.10);
+  border: 1px solid rgba(255,255,255,.22);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  align-items: center;
+}
+.btn-home:hover{
+  background: rgba(0,0,0,.18);
+}
+
+/* 모바일 */
+@media (max-width: 640px){
+  .msg-main{ margin: 84px auto 50px; }
+  .msg-title{ font-size: 22px; }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sea_you.dao.NoticeDAO">
+
+    <select id="noticelistDao" resultType="com.sea_you.dto.NoticeDTO">
+        SELECT n_no, n_title, n_date
+        FROM notice
+        ORDER BY n_no DESC
+    </select>
+
+    <select id="noticeviewDao" resultType="com.sea_you.dto.NoticeDTO">
+        SELECT n_no, n_title, n_write, n_date
+        FROM notice
+        WHERE n_no = #{n_no}
+    </select>
+
+    <insert id="insert" parameterType="com.sea_you.dto.NoticeDTO">
+        INSERT INTO notice (
+            n_no, n_title, n_write, n_date
+        ) VALUES (
+            seq_notice.NEXTVAL,
+            #{n_title}, #{n_write}, SYSDATE
+        )
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM notice WHERE n_no = #{n_no}
+    </delete>
+
+    <update id="update" parameterType="com.sea_you.dto.NoticeDTO">
+        UPDATE notice
+        SET
+            n_title = #{n_title, jdbcType=VARCHAR},
+            n_write = #{n_write, jdbcType=VARCHAR}
+        WHERE n_no = #{n_no, jdbcType=INTEGER}
+    </update>
+
+</mapper>

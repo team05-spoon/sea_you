@@ -1,0 +1,134 @@
+/* =========================
+   회원탈퇴 페이지 전용 (MemberDelete.css)
+========================= */
+
+.delete-layout {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  min-height: calc(100vh - 100px); /* 상단바 제외 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* 탈퇴 폼 카드 (Main.jsp의 side-box 스타일 계승) */
+.delete-container {
+  width: 100%;
+  max-width: 480px;
+  padding: 30px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.delete-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.delete-header h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #0b2239; /* 메인 텍스트 컬러 */
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.delete-header p {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(11, 34, 57, 0.7);
+  margin-top: 8px;
+}
+
+/* 입력 영역 스타일 */
+.delete-group {
+  margin-bottom: 20px;
+}
+
+.delete-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 900;
+  color: #0b2239;
+  margin-bottom: 8px;
+  padding-left: 5px;
+}
+
+/* 읽기 전용 정보창 */
+.delete-static {
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* 사유 입력창 */
+.delete-reason {
+  width: 100%;
+  height: 120px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.15);
+  color: #0b2239;
+  font-family: inherit;
+  font-weight: 700;
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
+  transition: background 0.2s;
+}
+
+.delete-reason:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 버튼 그룹 */
+.delete-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn-del {
+  padding: 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s, opacity 0.15s;
+  text-align: center;
+  display: block;
+}
+
+.btn-del:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* 탈퇴 확정 버튼 */
+.btn-submit {
+  background: rgba(214, 48, 49, 0.85); /* 레드 포인트 */
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(214, 48, 49, 0.3);
+}
+
+/* 취소 버튼 (more 버튼 스타일 계승) */
+.btn-back {
+  background: rgba(255, 255, 255, 0.22);
+  color: #0b2239;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}

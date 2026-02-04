@@ -1,0 +1,124 @@
+/* ===============================
+   ReportMemberWriteForm.css
+   - Main.css 위에 덮어쓰기
+   - 회원 신고 폼: 투명 글래스 카드
+   =============================== */
+
+.rm-main{
+  position: relative;
+  z-index: 5;
+  width: min(900px, calc(100% - 40px));
+  margin: 130px auto 80px;
+  color: #fff;
+}
+
+.rm-card{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 24px 28px;
+}
+
+.rm-head{ margin-bottom: 16px; }
+
+.rm-title{
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.rm-sub{
+  margin-top: 8px;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.rm-target{
+  margin: 12px 0 16px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  font-weight: 800;
+}
+
+.rm-form{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rm-row{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.rm-label{
+  padding-top: 10px;
+  font-weight: 900;
+  color: rgba(255,255,255,.92);
+}
+
+.rm-select,
+.rm-input,
+.rm-textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: #fff;
+  padding: 12px;
+  outline: none;
+}
+
+.rm-select{ padding: 10px 12px; cursor: pointer; }
+
+.rm-textarea{
+  min-height: 180px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.rm-input::placeholder,
+.rm-textarea::placeholder{
+  color: rgba(255,255,255,.55);
+}
+
+.rm-btns{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.rm-btn{
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.rm-btn.primary{
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.20);
+}
+.rm-btn.ghost{
+  background: rgba(0,0,0,.18);
+}
+
+.rm-btn:hover{ transform: translateY(-1px); }
+
+@media (max-width: 520px){
+  .rm-row{ grid-template-columns: 1fr; }
+  .rm-label{ padding-top: 0; }
+}

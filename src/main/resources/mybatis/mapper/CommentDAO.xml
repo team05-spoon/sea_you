@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sea_you.dao.CommentDAO">
+
+    <select id="getCommentList" parameterType="int" resultType="com.sea_you.dto.CommentDTO">
+        SELECT
+            c.comment_id,
+            c.board_id,
+            c.parent_id,
+            c.writer,
+            c.m_no,
+            c.reg_date,
+            c.like_count,
+            c.is_deleted,
+            LEVEL,
+            m.m_image,
+            CASE
+                WHEN c.is_deleted = 'Y' THEN '삭제된 댓글입니다.'
+                ELSE c.content
+            END AS content
+        FROM comments c
+        LEFT JOIN member m ON c.m_no = m.m_no
+        WHERE c.board_id = #{board_id}
+        START WITH c.parent_id = 0
+        CONNECT BY PRIOR c.comment_id = c.parent_id
+        ORDER SIBLINGS BY c.reg_date ASC
+    </select>
+
+    <insert id="insertComment" parameterType="com.sea_you.dto.CommentDTO">
+        INSERT INTO comments (
+            comment_id, board_id, parent_id, content, writer, m_no
+        ) VALUES (
+            comment_seq.NEXTVAL,
+            #{board_id},
+            #{parent_id},
+            #{content},
+            #{writer},
+            #{m_no}
+        )
+    </insert>
+
+    <insert id="insertLike">
+        INSERT INTO comment_likes (like_id, comment_id, m_id)
+        VALUES (comment_like_seq.NEXTVAL, #{comment_id}, #{m_id})
+    </insert>
+
+    <update id="plusLikeCount" parameterType="int">
+        UPDATE comments
+        SET like_count = like_count + 1
+        WHERE comment_id = #{comment_id}
+    </update>
+
+    <update id="deleteComment" parameterType="int">
+        UPDATE comments
+        SET is_deleted = 'Y'
+        WHERE comment_id = #{comment_id}
+    </update>
+
+</mapper>

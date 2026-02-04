@@ -1,0 +1,150 @@
+/* =============================
+   배경 레이어 (강제 고정)
+============================= */
+.bg-wrap {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+}
+
+.bg-img {
+	position: absolute;
+	inset: 0;
+	background: url("/images/background/Background.jpg") center/cover
+		no-repeat;
+}
+
+.bg-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, .35);
+}
+
+/* =============================
+   상단바 / 본문 레이어 올리기
+============================= */
+.top, .chat-main {
+	position: relative;
+	z-index: 2;
+}
+
+/* =============================
+   채팅 UI
+============================= */
+.chat-main {
+	width: min(1000px, 92%);
+	margin: 40px auto 80px;
+	color: #fff;
+}
+
+.chat-title {
+	font-size: 22px;
+	font-weight: 900;
+	margin-bottom: 12px;
+}
+
+.chat-card {
+	background: rgba(0, 0, 0, .28);
+	border: 1px solid rgba(255, 255, 255, .18);
+	border-radius: 18px;
+	padding: 16px;
+	box-shadow: 0 18px 60px rgba(0, 0, 0, .35);
+}
+
+/* =============================
+   채팅 출력 영역 (div 기반)
+============================= */
+#chatBox {
+	height: 460px;
+	padding: 14px;
+	border-radius: 14px;
+	background: rgba(0, 0, 0, .22);
+	border: 1px solid rgba(255, 255, 255, .14);
+	color: #fff;
+	white-space: normal; /* ✅ pre-wrap 제거 */
+	overflow-y: auto;
+}
+
+/* =============================
+   메시지 한 줄 (아이콘 + 말풍선)
+============================= */
+.msg-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin: 10px 0;
+}
+
+/* 프로필 아이콘 */
+.msg-avatar {
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	object-fit: cover;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, .25);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+}
+
+/* 말풍선 */
+.msg-bubble {
+	flex: 1;
+	max-width: 78%;
+	background: rgba(0, 0, 0, .35);
+	border: 1px solid rgba(255, 255, 255, .14);
+	border-radius: 14px;
+	padding: 10px 12px;
+}
+
+/* 닉네임 + 시간 */
+.msg-meta {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 6px;
+}
+
+.msg-nick {
+	font-weight: 900;
+	cursor: pointer;
+}
+
+.msg-time {
+	font-size: 12px;
+	opacity: .7;
+}
+
+/* 메시지 본문 */
+.msg-text {
+	line-height: 1.4;
+	word-break: break-word;
+}
+
+/* =============================
+   입력 영역
+============================= */
+.chat-input-row {
+	margin-top: 14px;
+	display: flex;
+	gap: 10px;
+}
+
+#chatInput {
+	flex: 1;
+	height: 44px;
+	padding: 0 14px;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, .16);
+	background: rgba(0, 0, 0, .25);
+	color: #fff;
+}
+
+#sendBtn {
+	width: 110px;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, .18);
+	background: rgba(255, 255, 255, .12);
+	color: #fff;
+	font-weight: 800;
+	cursor: pointer;
+}

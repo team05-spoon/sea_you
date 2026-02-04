@@ -1,0 +1,128 @@
+/* ===============================
+   MessageWrite.css
+   - Main.css 위에 덮어쓰기(쪽지 보내기 전용)
+   - 투명 글래스 카드 + 폼 UI
+   =============================== */
+
+.msg-main{
+  position: relative;
+  z-index: 5;
+  width: min(880px, calc(100% - 40px));
+  margin: 130px auto 80px; /* 상단바 공간 확보 */
+  color: #fff;
+}
+
+.msg-card{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 24px 28px;
+}
+
+.msg-head{
+  margin-bottom: 18px;
+}
+
+.msg-title{
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.msg-sub{
+  margin: 8px 0 0;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+}
+
+.msg-form{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.form-label{
+  font-weight: 900;
+  color: rgba(255,255,255,.9);
+  padding-top: 10px;
+}
+
+.form-static{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  font-weight: 800;
+}
+
+.form-textarea{
+  width: 100%;
+  min-height: 180px;
+  resize: vertical;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: #fff;
+  padding: 12px;
+  outline: none;
+  line-height: 1.6;
+}
+
+.form-textarea::placeholder{
+  color: rgba(255,255,255,.55);
+}
+
+.btn-row{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.btn-primary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.20);
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.btn-primary:hover{ transform: translateY(-1px); }
+
+.btn-ghost{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.18);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.btn-ghost:hover{ transform: translateY(-1px); }
+
+/* 모바일 살짝 */
+@media (max-width: 520px){
+  .form-row{ grid-template-columns: 1fr; }
+  .form-label{ padding-top: 0; }
+}

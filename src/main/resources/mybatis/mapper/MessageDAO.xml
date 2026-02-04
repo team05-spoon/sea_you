@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sea_you.dao.MessageDAO">
+
+	<select id="getMnoById" resultType="Integer">
+        select m_no from member where m_nick = #{nick}
+    </select>
+	
+	<insert id="writeDao">
+    insert into message (ms_no, send_m_no, recv_m_no, ms_content, ms_date)
+    values (
+        seq_message.NEXTVAL, 
+        #{send_m_no}, 
+        (select m_no from member where m_nick = #{recv_nick}), 
+        #{ms_content},
+        SYSDATE
+    )
+</insert>
+	
+	<select id="listDao" resultType="com.sea_you.dto.MessageDTO">
+		select m.*, mem.m_nick as send_nick
+		from message m join member mem on m.send_m_no =mem.m_no
+		where m.recv_m_no = #{m_no} and m.recv_del= 'N'
+		order by m.ms_date desc
+	</select>
+	
+	<select id="sendlistDao" resultType="com.sea_you.dto.MessageDTO">
+		select m.*, mem.m_nick as recv_nick
+		from message m join member mem on m.recv_m_no = mem.m_no
+		where m.send_m_no = #{m_no} and m.send_del = 'N'
+		order by m.ms_date desc
+	</select>
+	
+	<select id="viewDao" resultType="com.sea_you.dto.MessageDTO">
+		select m.*,
+			(select m_nick from member where m_no = m.send_m_no) as send_nick,
+			(select m_nick from member where m_no = m.recv_m_no) as recv_nick
+		from message m
+		where ms_no = #{ms_no}
+	</select>
+	
+	<update id="updateDao">
+		update message set ms_recv = 'Y'
+		where ms_no = #{ms_no} and recv_m_no = #{m_no}
+	</update>
+	
+	<update id="deleteDao">
+	    UPDATE message 
+	    <set>
+	        <if test="type == 'recv'">recv_del = 'Y'</if>
+	        <if test="type == 'sent'">send_del = 'Y'</if>
+	    </set>
+	    WHERE ms_no = #{ms_no}
+	</update>
+
+
+</mapper>
