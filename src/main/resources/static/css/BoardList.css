@@ -1,0 +1,301 @@
+/* ===============================
+   BoardList.css
+   - Main.css 위에 덮어쓰기(추가)
+   - 배경: /images/background/Background.jpg
+   - 게시판: 유리카드 + 테이블
+   =============================== */
+
+/* ✅ 기본 */
+html, body { height: 100%; }
+body { margin: 0; }
+
+/* ===============================
+   ✅ 배경 레이어
+   JSP에 아래 구조가 있어야 함:
+   <div class="bg-wrap">
+     <div class="bg-img"></div>
+     <div class="bg-overlay"></div>
+   </div>
+   =============================== */
+.bg-wrap{
+  position: fixed;
+  inset: 0;
+  z-index: -10; /* 어떤 요소보다 뒤 */
+  overflow: hidden;
+}
+
+.bg-img{
+  position: absolute;
+  inset: 0;
+  background: url("/images/background/Background.jpg") center / cover no-repeat;
+  transform: scale(1.1);  /* 배경 이미지 확대 */
+  filter: saturate(1.05);
+}
+
+.bg-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.35); /* 메인처럼 살짝 어둡게 */
+  pointer-events: none;
+}
+
+/* ===============================
+   ✅ 상단바(top) 때문에 본문 가려지는 거 방지
+   (Main.css의 .top이 fixed/absolute일 때 대비)
+   =============================== */
+.board-main{
+  width: min(1100px, 92%);
+  margin: 120px auto 60px;   /* 상단바 높이 여유 */
+  color: #fff;
+}
+
+/* ===============================
+   ✅ 헤더 영역(제목 + 글쓰기 버튼)
+   =============================== */
+.board-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0 14px;
+}
+
+.board-title{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: #fff;
+  text-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.btn-write{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-write:hover{
+  background: rgba(255,255,255,.16);
+}
+
+/* ===============================
+   ✅ 게시판 카드(유리 느낌)
+   =============================== */
+.board-card{
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+}
+
+/* ===============================
+   ✅ 테이블
+   =============================== */
+.board-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.board-table thead th{
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255,255,255,.88);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  white-space: nowrap;
+}
+
+.board-table tbody td{
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.board-table tbody tr:hover{
+  background: rgba(255,255,255,.06);
+}
+
+/* 번호/작성자/날짜 정렬 조금 보기 좋게 */
+.board-table tbody td:nth-child(1){
+  font-weight: 800;
+  color: rgba(255,255,255,.82);
+}
+.board-table tbody td:nth-child(3),
+.board-table tbody td:nth-child(4){
+  color: rgba(255,255,255,.85);
+}
+
+/* 제목 링크 */
+.title-link{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+}
+.title-link:hover{
+  text-decoration: underline;
+}
+
+/* 데이터 없을 때 */
+.empty{
+  text-align: center;
+  padding: 26px 16px;
+  color: rgba(255,255,255,.75);
+}
+
+/* ===============================
+   ✅ 홈으로 버튼
+   =============================== */
+.btn-home{
+  display: inline-block;
+  margin-top: 14px;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.20);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.btn-home:hover{
+  background: rgba(255,255,255,.10);
+}
+
+/* ===============================
+   ✅ 작성자 아이콘(목록) 크기 고정
+   =============================== */
+.writer-cell .writer-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none; /* 필요하면 underline 제거 */
+}
+
+.writer-cell .writer-avatar{
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 3px 8px rgba(0,0,0,.22);
+}
+
+/* ===============================
+   ✅ 게시글 이미지 스타일
+   =============================== */
+.board-image {
+  width: 20mm;
+  height: 20mm;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  margin-top: 10px;  /* 여백 추가 */
+}
+.whaile-image {
+  height:20mm;
+}
+
+.board-image:hover {
+  transform: scale(1.05); /* 마우스 오버 시 이미지 확대 */
+}
+
+/* ===============================
+   ✅ footer
+   =============================== */
+.board-footer{
+  text-align: center;
+  padding: 22px 12px;
+  color: rgba(255,255,255,.70);
+  font-size: 13px;
+}
+
+/* ===============================
+   ✅ (선택) 자동완성 suggestions가 Main.css에 없을 때 대비
+   - 이미 Main.css에 있으면 이 부분은 영향 거의 없음
+   =============================== */
+#suggestions{
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,10,20,.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: none;
+}
+#suggestions .item{
+  padding: 10px 12px;
+  cursor: pointer;
+  color: rgba(255,255,255,.92);
+}
+#suggestions .item:hover{
+  background: rgba(255,255,255,.10);
+}
+#suggestions em{
+  background: rgba(255,255,255,.20);
+  font-style: normal;
+  font-weight: 900;
+  padding: 0 4px;
+  border-radius: 6px;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 25px 0;
+}
+
+.page-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  background: rgba(0, 0, 0, 0.4); 
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.page-btn:hover {
+  background: #4a90e2; 
+  border-color: #4a90e2;
+  color: #fff;
+}
+
+.page-btn.active {
+  background: #4a90e2; 
+  color: #fff;
+  border-color: #4a90e2;
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+}

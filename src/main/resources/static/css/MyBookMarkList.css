@@ -1,0 +1,159 @@
+/* ===== MyBookMarkList.css ===== */
+
+html, body { height: 100%; margin: 0; }
+
+.bg-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+}
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+}
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.28);
+}
+
+.page {
+  position: relative;
+  z-index: 5;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 140px 22px 80px;
+}
+
+.panel {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  overflow: hidden;
+}
+
+/* ✅ 제목 헤더 영역 */
+.panel-head { padding: 22px 22px 12px; }
+
+.title-with-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 아이콘과 글자 사이 좁게 */
+}
+
+/* 상단바 프로필과 유사한 작은 크기 */
+.title-small-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 24px; /* 조금 작게 조정 */
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+
+.panel-sub {
+  margin-top: 8px;
+  padding-left: 42px; /* 아이콘(32px) + gap(10px) 에 맞춤 */
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+}
+
+/* ✅ 테이블 스타일 */
+.table-area { padding: 0 18px 14px; overflow-x: auto; }
+.bookmark-table {
+  width: 100%;
+  min-width: 750px;
+  border-collapse: collapse;
+}
+.bookmark-table thead th {
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255,255,255,.88);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.12);
+}
+.bookmark-table tbody td {
+  padding: 14px;
+  font-size: 14px;
+  color: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  vertical-align: middle;
+}
+.bookmark-table tbody tr:hover { background: rgba(255,255,255,.08); }
+
+.beach-img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.beach-name a {
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+.beach-name a:hover { text-decoration: underline; }
+
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  background: rgba(255, 107, 107, 0.15);
+  color: #ffb8b8;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 11px;
+  transition: 0.3s;
+}
+.btn-cancel:hover {
+  background: rgba(255, 107, 107, 0.35);
+  color: #fff;
+}
+
+.panel-foot {
+  padding: 16px 22px 22px;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(0,0,0,.18);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.no-data { text-align: center; padding: 40px; color: #fff; }
+
+@media (max-width: 700px){
+  .page { padding-top: 120px; }
+  .panel-title { font-size: 18px; }
+  .title-small-icon { width: 28px; height: 28px; }
+  .panel-sub { padding-left: 38px; }
+}

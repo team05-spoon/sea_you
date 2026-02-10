@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sea_you.dao.MemberDAO">
+
+    <select id="listDao" resultType="com.sea_you.dto.MemberDTO">
+		select * from member order by m_no asc
+	</select>
+	<select id="mlistDao" resultType="com.sea_you.dto.MemberDTO">
+	    SELECT * FROM member 
+	    WHERE m_nick != 'admin' 
+	    ORDER BY m_no DESC
+	</select>
+	<select id="viewDao" resultType="com.sea_you.dto.MemberDTO">
+		select * from member where m_no = #{param1}
+	</select>
+	<select id="findByMnick" resultType="com.sea_you.dto.MemberDTO">
+    SELECT * from member where m_nick = #{m_nick}
+	</select>
+	<select id="findByMno" resultType="com.sea_you.dto.MemberDTO">
+    SELECT * from member where m_no = #{m_no}
+	</select>
+	<insert id="writeDao">
+		insert into member values (seq_member.nextval,#{m_nick},#{m_image},#{m_pw},#{m_name},#{m_sex},#{m_birth},#{m_addr},#{m_tel},#{m_email},'USER')
+	</insert>
+	<update id="updateDao">
+		update member set m_nick=#{m_nick},m_image=#{m_image},m_pw=#{m_pw},m_addr=#{m_addr},m_tel=#{m_tel},m_email=#{m_email} where m_no=#{m_no}
+	</update>
+	<delete id="deleteDao">
+        delete from member where m_no=#{param1} 
+    </delete>
+    <delete id="deletememberDao">
+        delete from member where m_nick=#{m_nick}
+    </delete>
+<select id="getTopFollowers" resultType="map">
+    SELECT * FROM (
+        SELECT 
+            m.m_no, 
+            m.m_nick, 
+            m.m_image, 
+            (SELECT COUNT(*) FROM follow f WHERE f.following_no = m.m_no) AS follower_count
+        FROM member m
+        ORDER BY follower_count DESC
+    )
+    WHERE ROWNUM &lt;= 3
+</select>
+   <select id="getFollowerCount" resultType="int">
+       SELECT COUNT(*) 
+       FROM follow 
+       WHERE following_no = #{m_no}
+   </select>
+   <select id="checkNick" resultType="int">
+    SELECT COUNT(*) FROM MEMBER WHERE M_NICK = #{m_nick}
+</select>
+</mapper>

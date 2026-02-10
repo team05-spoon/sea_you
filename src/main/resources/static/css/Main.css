@@ -1,0 +1,1353 @@
+:root {
+  --text: #fff;
+  --muted: rgba(255, 255, 255, .7);
+  --line: rgba(255, 255, 255, .15);
+}
+
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* =========================
+   배경
+========================= */
+.bg-wrap { position: fixed; inset: 0; z-index: 0; }
+.bg-video { width: 100%; height: 100%; object-fit: cover; }
+.bg-overlay { display: none; }
+
+/* =========================
+   상단바
+========================= */
+.top {
+  position: relative;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .6);
+}
+.logo { font-family: "Poppins"; font-size: 26px; font-weight: 800; }
+
+/* 네비 */
+.nav {
+  display: flex; align-items: center; gap: 14px;
+  font-weight: 800; font-size: 14px; color: var(--muted);
+}
+.nav > a:hover { color: #fff; }
+.sep { opacity: .35; }
+
+/* =========================
+   드롭다운
+========================= */
+.menu { position: relative; display: inline-block; }
+.menu > a { display: inline-block; padding: 6px 8px; border-radius: 10px; }
+.menu:hover > a { background: rgba(255, 255, 255, .08); color: #fff; }
+
+/* hover 안전지대 */
+.menu::after { content: ""; position: absolute; left: -6px; right: -6px; top: 100%; height: 14px; }
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+
+  min-width: 220px;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  z-index: 9999;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  visibility: hidden;
+
+  transition: opacity .12s ease, transform .12s ease, visibility 0s linear .18s;
+}
+
+.menu:hover .dropdown,
+.dropdown:hover{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+  transition: opacity .12s ease, transform .12s ease, visibility 0s;
+}
+
+.dropdown .title {
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, .6);
+  padding: 6px 10px;
+}
+
+.dropdown a{
+  display:block;
+  padding: 9px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dropdown a:hover { background: rgba(255, 255, 255, .08); }
+
+/* 지역별 */
+.menu.region-menu::after { height: 24px; }
+.menu.region-menu .dropdown { top: calc(100% + 24px); }
+
+.dropdown.region { min-width: 260px; padding: 8px; }
+.dropdown.region .region-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+@media (max-width: 820px){
+  .dropdown.region .region-grid{ grid-template-columns: 1fr; }
+}
+
+/* 드롭다운 없는 메뉴 */
+.menu.no-dropdown::after { display: none; }
+.menu.no-dropdown .dropdown { display: none; }
+
+/* =========================
+   오른쪽 도구
+========================= */
+.right-tools {
+  margin-left: auto;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+/* 검색 */
+.search-wrap{
+  position: relative;
+  display:flex;
+  align-items:center;
+  gap: 8px;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, .25);
+}
+.search-input{
+  width: 180px;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: 700;
+}
+.search-input::placeholder{ color: rgba(255,255,255,.6); }
+
+.search-btn{
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* 자동완성 */
+#suggestions{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+
+  background: rgba(0,0,0,.6);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  display: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+#suggestions .item{
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+#suggestions .item:hover{ background: rgba(255,255,255,.08); }
+#suggestions em{
+  background: rgba(255,255,255,.25);
+  font-style: normal;
+  font-weight: 900;
+}
+
+/* 로그인/프로필 */
+.auth{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 800;
+  color: var(--muted);
+}
+.auth a{
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.25);
+}
+.auth a:hover{ background: rgba(255,255,255,.15); }
+
+.profile-link{
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  display: inline-flex;
+  align-items: center;
+}
+.profile-img{
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.75);
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.profile-link:hover .profile-img{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+/* =========================================================
+   ✅ 메인 레이아웃
+========================================================= */
+.home-layout{
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  padding: 0 24px 100px;
+  margin-top: 26px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 사진 영역 */
+.home-left{
+  width: auto;
+  position: relative;
+  z-index: 50;
+  margin-bottom: 60px;
+}
+
+/* ✅ 여름/겨울: 좌우 2열 (원래대로 가로배치) */
+.season-grid{
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 56px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.season-col{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-right: 2px;
+  padding-top: 6px;
+}
+
+/* 헤더 */
+.season-title{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin: 0 0 14px;
+
+  font-family: "Poppins","Noto Sans KR",sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+
+  letter-spacing: 1.1px;
+  line-height: 1;
+
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0,0,0,.55);
+}
+.season-title.summer{ color: rgba(255, 205, 60, 0.98); }
+.season-title.winter{ color: #d6ecff; }
+
+/* =========================================================
+   ✅ 핵심: 각 시즌 2×3 (가로 2, 세로 3) = 6개용
+========================================================= */
+.season-list{
+  display: grid;
+  grid-template-columns: repeat(2, 148px); /* ✅ 가로 2개 */
+  gap: 14px 18px;
+  justify-content: center;
+  align-items: start;
+}
+
+/* ✅ 12개(6개씩)면 더미칸 필요없음 */
+.season-list::after{ display:none; }
+
+/* =========================================================
+   ✅ 해수욕장 카드 (Flip 유지)
+========================================================= */
+.beach-card{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  gap: 10px;
+  text-align:center;
+}
+
+.beach-circle{
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  position: relative;
+  isolation: isolate;
+
+  border: 2px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 14px 30px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.28);
+
+  transform: translateZ(0);
+}
+
+.beach-card:hover .beach-circle{
+  transform: translateY(-4px);
+  transition: transform .18s ease;
+}
+
+.beach-circle.flip{ perspective: 1000px; }
+
+.beach-circle.flip .flip-inner{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: inherit;
+}
+
+.beach-circle.flip .front,
+.beach-circle.flip .back{
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.beach-circle.flip .front img,
+.beach-circle > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.beach-circle.flip .back{
+  transform: rotateY(180deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap: 4px;
+  text-align:center;
+  padding: 12px;
+
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.22);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.beach-circle.flip .back-title{
+  font-weight: 900;
+  font-size: 14px;
+  color: #0b2239;
+}
+.beach-circle.flip .back-sub{
+  font-weight: 800;
+  font-size: 12px;
+  color: rgba(11,34,57,.78);
+}
+
+.beach-card:hover .beach-circle.flip .flip-inner{
+  transform: rotateY(180deg);
+}
+
+/* =========================================================
+   ✅ 게시판 영역
+========================================================= */
+.home-right{
+  width: 100%;
+  max-width: 1100px;
+  display:flex;
+  justify-content:center;
+  position: relative;
+  z-index: 30;
+}
+
+.right-panels{
+  display:grid;
+  grid-template-columns: repeat(2, clamp(300px, 24vw, 380px));
+  gap: 18px;
+  justify-content:center;
+}
+
+.side-box{
+  border-radius: 18px;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+  padding: 14px 14px 12px;
+  min-height: 300px;
+}
+
+.side-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:nowrap;
+  margin-bottom: 12px;
+}
+.side-head h3{
+  margin:0;
+  font-size:16px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+
+  color:#0b2239;
+  text-shadow: 0 2px 10px rgba(255,255,255,.25);
+}
+
+.more{
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.22);
+  font-weight: 900;
+
+  color:#0b2239;
+  text-shadow:none;
+
+  margin-left:auto;
+  flex: 0 0 auto;
+  align-self:center;
+}
+.more:hover{ background: rgba(255,255,255,.34); }
+
+.side-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.side-list li a{
+  display:block;
+  padding: 10px 12px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.28);
+
+  font-weight: 800;
+  color:#0b2239;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+
+  text-shadow:none;
+}
+.side-list li a:hover{ background: rgba(255,255,255,.35); }
+
+/* 반응형 */
+@media (max-width: 1200px){
+  .right-panels{ grid-template-columns: 1fr; }
+  .season-grid{
+    grid-template-columns:max-content max-content;
+    column-gap: 12px;
+  }
+}
+@media (max-width: 820px){
+  .season-grid{ grid-template-columns: 1fr; } /* 화면 좁으면 여름/겨울 세로로 */
+}
+@media (max-width: 720px){
+  .season-list{
+    grid-template-columns: repeat(2, 112px);
+    justify-content: center;
+  }
+  .beach-circle{
+    width: 112px;
+    height: 112px;
+  }
+}
+
+/* =========================================================
+   ✅ 메인 중앙 검색창 스타일
+========================================================= */
+.main-search-wrap{
+  width: 100%;
+  display:flex;
+  justify-content:center;
+  margin: 18px 0 26px;
+  position: relative;
+  z-index: 60;
+}
+
+.search-wrap.main-search{
+  padding: 10px 16px;
+  gap: 10px;
+  background: rgba(0,0,0,.32);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.search-wrap.main-search .search-input{
+  width: 260px;
+  font-size: 15px;
+}
+
+.search-wrap.main-search .search-btn{
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.search-wrap.main-search #suggestions{
+  top: 48px;
+}
+/* 겉껍데기: 위치와 너비만 조절 */
+#userTopFloating {
+  position: fixed;       
+  top: 140px;               
+  right: 50px;           /* 오른쪽 여백 살짝 늘림 */
+  width: 300px;          /* 가로를 확 줄여서 세로 직사각형 느낌 강조 */
+  z-index: 9998;         
+  
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+}
+
+/* 안쪽 실물 박스: 세로로 길어 보이게 세팅 */
+#userTopFloating .side-box, 
+#userTopFloating .user-top-box {
+  margin: 0 !important;
+  width: 100% !important;
+  min-height: 400px !important; /* 최소 높이를 줘서 직사각형 형태 유지 */
+  padding: 20px 14px !important; /* 위아래 여백을 늘려 더 길어 보이게 */
+}
+
+/* 내부 리스트 간격 조정 (더 촘촘하고 길게) */
+#userTopFloating .side-list {
+  gap: 12px !important;
+}
+/* =========================
+   ChatBot
+========================= */
+
+/* 💬 버튼 */
+#chatbot-btn{
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 99999;
+
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  box-shadow: 0 10px 26px rgba(0,0,0,.35);
+}
+
+/* 챗봇 박스 */
+#chatbot-box{
+  position: fixed;
+  right: 26px;
+  bottom: 96px;
+
+  width: 340px;
+  height: 460px;
+
+  z-index: 100000; /* 🔥 제일 중요 */
+
+  display: none;
+  flex-direction: column;
+
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 18px;
+
+  box-shadow: 0 22px 50px rgba(0,0,0,.45);
+  overflow: hidden;
+}
+
+/* 헤더 */
+.chatbot-header{
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.chatbot-title{
+  font-weight: 900;
+}
+
+.chatbot-close{
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 메시지 영역 */
+#chatbot-messages{
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 말풍선 공통 */
+.chat-msg{
+  max-width: 80%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+/* 봇 */
+.chat-msg.bot{
+  align-self: flex-start;
+  background: rgba(255,255,255,.85);
+  color: #0b2239;
+}
+
+/* 유저 */
+.chat-msg.user{
+  align-self: flex-end;
+  background: rgba(0,140,255,.85);
+  color: #fff;
+}
+
+/* 입력창 */
+.chatbot-input{
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+
+#chatbot-input{
+  flex: 1;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #fff;
+  outline: none;
+}
+
+.chatbot-input button{
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+
+  background: rgba(0,140,255,.9);
+  color: #fff;
+}
+#chatbot-box.on{ display:flex !important; flex-direction:column; }
+#chatbot-messages{ min-height:0 !important; overflow-y:auto !important; }
+
+/* =========================================================
+   ✅ (추가만) ChatBot 아이콘 이미지용 덮어쓰기
+   - 기존 #chatbot-btn 스타일은 건드리지 않고,
+     img만 예쁘게 보이게 + 호버 효과만 추가
+========================================================= */
+#chatbot-btn .chatbot-icon{
+  width: 54px;
+  height: 54px;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none; /* 클릭은 #chatbot-btn이 받음 */
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+  transition: transform .15s ease, filter .15s ease;
+}
+
+#chatbot-btn:hover .chatbot-icon{
+  transform: translateY(-2px) scale(1.03);
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,.35));
+}
+
+#chatbot-btn:active .chatbot-icon{
+  transform: translateY(0) scale(.98);
+}
+/* =========================================================
+   ✅ ChatBot 버튼 배경 제거 (아이콘만 보이게)
+   - 기존 #chatbot-btn 스타일 위에 덮어쓰기
+========================================================= */
+#chatbot-btn{
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+/* 아이콘만 자연스럽게 떠있게 */
+#chatbot-btn .chatbot-icon{
+  width: 54px;
+  height: 54px;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));
+  transition: transform .15s ease, filter .15s ease;
+}
+
+/* 호버 효과 */
+#chatbot-btn:hover .chatbot-icon{
+  transform: translateY(-3px) scale(1.05);
+  filter: drop-shadow(0 14px 24px rgba(0,0,0,.45));
+}
+
+/* 클릭 효과 */
+#chatbot-btn:active .chatbot-icon{
+  transform: scale(.95);
+}
+/* =========================================================
+   ✅ ChatBot 컬러 반전 (박스 밝게 / 말풍선 어둡게)
+   - 기존 스타일 덮어쓰기 ONLY
+========================================================= */
+
+/* 전체 챗봇 박스 → 밝은 유리 느낌 */
+#chatbot-box{
+  background: rgba(255,255,255,.78) !important;
+  border: 1px solid rgba(255,255,255,.6) !important;
+
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+
+  box-shadow: 0 26px 60px rgba(0,0,0,.25) !important;
+}
+
+/* 헤더도 밝게 */
+.chatbot-header{
+  background: rgba(255,255,255,.85);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.chatbot-title{
+  color: #0b2239;
+}
+
+.chatbot-close{
+  color: #0b2239;
+}
+
+/* =========================
+   말풍선 반전
+========================= */
+
+/* 🤖 봇 말풍선 → 어두운 */
+.chat-msg.bot{
+  background: rgba(20,20,20,.85) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+/* 🙋 유저 말풍선 → 포인트 블루 */
+.chat-msg.user{
+  background: linear-gradient(135deg, #007aff, #005ecb) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+
+/* =========================
+   입력창도 밝게
+========================= */
+.chatbot-input{
+  background: rgba(255,255,255,.85);
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+#chatbot-input{
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.15);
+  color: #0b2239;
+}
+
+#chatbot-input::placeholder{
+  color: rgba(0,0,0,.45);
+}
+/* =========================================================
+   ✅ ChatBot을 공지/게시판 '유리 카드' 느낌으로 통일
+   - 추가(덮어쓰기)만
+========================================================= */
+
+/* 바깥 챗봇 박스: side-box 같은 유리 카드 */
+#chatbot-box{
+  background: rgba(255,255,255,.18) !important;
+  border: 1px solid rgba(255,255,255,.35) !important;
+  border-radius: 18px !important;
+
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.35) !important;
+
+  overflow: hidden;
+}
+
+/* 헤더: side-head 톤 */
+.chatbot-header{
+  height: 52px !important;
+  padding: 0 14px !important;
+  border-bottom: 1px solid rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.10);
+}
+
+.chatbot-title{
+  color:#0b2239 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 10px rgba(255,255,255,.25) !important;
+}
+
+.chatbot-close{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.35);
+  color:#0b2239 !important;
+}
+.chatbot-close:hover{ background: rgba(255,255,255,.34); }
+
+/* 메시지 영역 */
+#chatbot-messages{
+  padding: 12px !important;
+  gap: 10px !important;
+}
+
+/* 말풍선 공통: side-list li a 느낌으로 */
+.chat-msg{
+  max-width: 88% !important;
+  border-radius: 14px !important;
+  padding: 10px 12px !important;
+  font-weight: 800 !important;
+  line-height: 1.45 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(255,255,255,.28);
+}
+
+/* 봇: 공지/게시판 리스트 버튼 톤 (밝은 유리) */
+.chat-msg.bot{
+  align-self: flex-start;
+  background: rgba(255,255,255,.22) !important;
+  border: 1px solid rgba(255,255,255,.28) !important;
+  color:#0b2239 !important;
+}
+
+/* 유저: 살짝 진한 유리 + 포인트 느낌 */
+.chat-msg.user{
+  align-self: flex-end;
+  background: rgba(0,140,255,.18) !important;
+  border: 1px solid rgba(0,140,255,.28) !important;
+  color:#0b2239 !important;
+}
+
+/* 입력 바닥도 카드 톤 */
+.chatbot-input{
+  padding: 10px !important;
+  border-top: 1px solid rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.10);
+}
+
+/* 입력창: 메인 검색창 느낌 */
+#chatbot-input{
+  background: rgba(255,255,255,.12) !important;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  color:#0b2239 !important;
+}
+#chatbot-input::placeholder{
+  color: rgba(11,34,57,.55) !important;
+}
+
+/* 전송 버튼: more 버튼 느낌 */
+.chatbot-input button{
+  background: rgba(255,255,255,.22) !important;
+  border: 1px solid rgba(255,255,255,.35) !important;
+  color:#0b2239 !important;
+  font-weight: 900 !important;
+}
+.chatbot-input button:hover{
+  background: rgba(255,255,255,.34) !important;
+}
+/* 인기 바다 랭킹 스타일 커스텀 */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px !important; /* 리스트 사이 간격 */
+}
+
+.rank-item-link {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px !important; /* 내부 여백 */
+  background: rgba(255, 255, 255, 0.22) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 14px !important;
+  transition: all 0.2s ease;
+}
+
+.rank-item-link:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  transform: translateX(5px);
+}
+
+/* 사각 아이콘 이미지 */
+.rank-img-icon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.rank-img-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; /* 부드러운 사각형 아이콘 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 이미지 위 순위 숫자 */
+.rank-badge {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  background: #0b2239;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* 텍스트 정보 */
+.rank-text-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rank-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0b2239;
+}
+
+.rank-meta {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff4757; /* 찜 횟수 강조 컬러 */
+}
+
+.none-msg {
+  text-align: center;
+  font-size: 13px;
+  color: #0b2239;
+  padding: 20px 0;
+  font-weight: 800;
+}
+
+/* =========================================================
+   ✅ 인기 해수욕장 플로팅 (인기 멤버 바로 아래로 이동)
+========================================================= */
+#leftRankingFloating {
+  position: fixed;       
+  top: 435px;            /* 인기 멤버 박스가 끝나는 지점 근처로 설정 (수치 조절 가능) */
+  right: 80px;           /* 왼쪽(left)에서 오른쪽(right)으로 변경하여 인기멤버와 정렬 */
+  width: 270px;          /* 가로 너비 통일 */
+  z-index: 9997;         /* 인기 멤버보다 살짝 뒤 혹은 비슷하게 */
+  
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+}
+
+/* 안쪽 실물 박스 디자인 (기존 스타일 유지) */
+#leftRankingFloating .side-box {
+  margin: 0 !important;
+  width: 100% !important;
+  min-height: 400px !important; 
+  padding: 20px 14px !important;
+  
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(18px) !important;
+  border-radius: 18px !important;
+}
+
+/* 랭킹 아이템 간격 */
+#leftRankingFloating .ranking-list {
+  gap: 12px !important;
+}
+
+/* 호버 시 인기 멤버와 동일하게 반응 */
+#leftRankingFloating .rank-item-link {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  padding: 10px !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-radius: 14px !important;
+  transition: all 0.2s ease;
+}
+
+#leftRankingFloating .rank-item-link:hover {
+  transform: translateX(-5px); /* 오른쪽 벽에 붙어있으므로 왼쪽으로 살짝 밀림 */
+  background: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* 숫자 배지 (안 잘리게 처리된 버전) */
+#leftRankingFloating .rank-img-icon {
+  width: 44px !important;
+  height: 44px !important;
+  position: relative;
+  flex-shrink: 0;
+}
+
+#leftRankingFloating .rank-img-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#leftRankingFloating .rank-badge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  z-index: 20;
+  background: #0b2239;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+/* ⭐ 웨일리: 비디오 위, 오버레이 아래(또는 위) 조절 가능 */
+.whaley-float{
+  position: absolute;     /* bg-wrap 기준 */
+  left: -15%;             /* 좌측 절반 차지하도록 밖으로 */
+  top: 10%;
+  height: 67vh;           /* 크게 (화면 높이 기준) */
+  width: auto;
+
+  z-index: 2;             /* ✅ 보이게 하는 핵심 */
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.whaley-float__img{
+  height: 100%;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 24px 44px rgba(0,0,0,0.25));
+}
+
+/* 텍스트는 이미지 위에 얹기 */
+.whaley-float__text{
+  position: absolute;
+  left: 46%;
+  bottom: 18%;
+  transform: translateX(-10%);
+  color: rgba(255,255,255,0.92);
+  font-family: 'Noto Sans KR', sans-serif;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.45);
+}
+
+.whaley-float__quote{
+  font-size: 22px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.whaley-float__sign{
+  margin-top: 6px;
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+/* ✅ 오버레이가 웨일리를 가리면 z-index를 낮추거나 투명도 조절 */
+.bg-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;             /* ✅ 웨일리(2)보다 아래 */
+  /* 기존 색/그라데이션 유지 */
+}
+
+/* 반응형 */
+@media (max-width: 1200px){
+  .whaley-float{ left: -36%; height: 78vh; top: 2%; }
+}
+
+@media (max-width: 992px){
+  .whaley-float{ left: -42%; height: 72vh; top: 6%; opacity: 0.88; }
+}
+
+@media (max-width: 768px){
+  .whaley-float{ display: none; }
+}
+/* 1. 상단바 메뉴 전체: 가로 한 줄 정렬 강제 고정 */
+.nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    position: relative; /* 검색창 absolute 배치의 기준점 */
+    width: auto;
+}
+
+/* 2. 검색창 전체 박스: 메뉴 레이아웃을 방해하지 않게 공중에 띄움 */
+.nav-search {
+    position: absolute !important; 
+    /* 전체채팅(약 450px~500px 지점)보다 훨씬 오른쪽인 580px로 설정 */
+    left: 580px !important; 
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    z-index: 100;
+}
+
+/* 3. 검색창 내부: 가로로 길고 슬림하게 정렬 */
+.nav-search .main-search {
+    display: flex !important;       /* 입력창과 버튼을 가로로 배치 */
+    flex-direction: row !important;  /* 내부 요소 세로 꺾임 방지 */
+    align-items: center !important;  /* 수직 중앙 정렬 */
+    width: 380px !important;         /* 검색창 전체 가로 길이 (충분히 크게) */
+    height: 42px !important;         /* 검색창 높이 */
+    padding: 0 15px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 4. 입력창: 검색창 내부 공간 활용 */
+.nav-search .search-input {
+    flex: 1 !important;              /* 버튼 제외한 나머지 공간 다 차지 */
+    background: none !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    outline: none !important;
+}
+
+/* 5. 검색 버튼: 글자가 절대 세로로 깨지지 않게 설정 */
+.nav-search .search-btn {
+    flex-shrink: 0 !important;       /* 버튼 크기 고정 */
+    white-space: nowrap !important;  /* '검색' 글자 줄바꿈 절대 방지 */
+    background: none !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 800 !important;     /* 글자 진하게 */
+    font-size: 15px !important;
+    cursor: pointer !important;
+    margin-left: 10px !important;
+}
+
+/* 자동완성 목록 위치 보정 */
+#suggestions {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    color: #333;
+    z-index: 1001;
+}
+/* 기본 검색창 위치 (일반 회원) */
+.nav-search {
+    position: absolute !important; 
+    left: 580px !important; /* 기존 위치 유지 */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+/* ✅ 관리자로 로그인했을 때만 검색창을 더 오른쪽으로 밀기 */
+.nav-search.admin-nav {
+    /* 관리자 메뉴(회원관리, 신고목록)가 추가된 만큼 오른쪽으로 이동 */
+    /* 580px에서 약 150~200px 정도 더 밀어줍니다. 숫자는 화면 보면서 조절하세요. */
+    left: 760px !important; 
+}
+
+/* 만약 화면이 작아져서 로그인 버튼과 겹친다면? */
+@media (max-width: 1400px) {
+    .nav-search.admin-nav {
+        left: 720px !important;
+    }
+}
+/* =========================
+   상단바 레이아웃 수정 (클릭 문제 해결)
+========================= */
+.nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: nowrap !important; /* 메뉴가 아래로 떨어지지 않게 고정 */
+}
+
+/* 관리자 모드일 때 메뉴가 많으므로 간격 미세 조정 */
+.nav a, .nav .menu > a {
+    position: relative;
+    z-index: 105; /* 링크가 검색창보다 위에 있도록 */
+    white-space: nowrap;
+}
+
+/* 검색창: absolute를 버리고 flex 순서대로 배치 */
+.nav-search, .nav-search.admin-nav {
+    position: static !important; /* 공중에 띄우지 않음 */
+    transform: none !important;
+    margin-left: 15px !important; /* 메뉴와 검색창 사이 간격 */
+    z-index: 100;
+}
+
+/* 검색창 내부 슬림화 (신고목록 공간 확보) */
+.nav-search .main-search {
+    width: 240px !important; /* 너비를 줄여서 메뉴와 공존하게 함 */
+    height: 36px !important;
+    padding: 0 12px !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.nav-search .search-input {
+    width: 100% !important;
+    font-size: 13px !important;
+}
+
+.nav-search .search-btn {
+    font-size: 13px !important;
+    padding: 4px 8px !important;
+    flex-shrink: 0;
+}
+
+.footer {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 30px 0;
+    margin-top: 50px;
+    
+    background: transparent !important; 
+    backdrop-filter: none !important;
+    border: none !important;
+    
+    text-align: center;
+
+    color: #1a3a5f; 
+    font-size: 13px;
+    font-weight: 500;
+    pointer-events: none; 
+}
+
+.footer b {
+    /* ✅ 로고 강조색 */
+    color: #0d253f; 
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.footer p {
+    margin: 5px 0;
+    pointer-events: auto; 
+}

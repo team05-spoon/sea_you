@@ -1,0 +1,220 @@
+/* ===============================
+   NoticeList.css (FINAL - SAME TOPBAR POSITION)
+   - Main.css 위에 덮어쓰기(추가)
+   - 배경: /images/background/Background.jpg
+   - ✅ 상단바 위치: BoardList/RecvMessageList와 동일 (올림 제거)
+   =============================== */
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+/* =============================
+   배경 레이어
+============================= */
+.bg-wrap{
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.bg-img{
+  position: absolute;
+  inset: 0;
+  background: url("/images/background/Background.jpg") center / cover no-repeat;
+  transform: scale(1.03);
+  filter: saturate(1.05);
+}
+
+.bg-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  pointer-events: none;
+}
+
+/* =============================
+   ✅ 상단바 위치 통일 (Board/Recv랑 동일)
+   - Notice에서만 올라가던 transform 제거
+============================= */
+.top{
+  align-items: center;     /* 수직정렬 */
+  transform: none;         /* ✅ 핵심: 올림 제거 */
+  will-change: auto;
+}
+
+/* nav 수직정렬 (공지사항만 처지는 거 방지) */
+.nav{
+  display: flex;
+  align-items: center;
+}
+
+/* nav 안 텍스트 요소 높이/라인하이트 통일 */
+.nav > a,
+.nav .menu > a,
+.nav .sep{
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  line-height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* =============================
+   본문
+============================= */
+.notice-main{
+  width: min(1100px, 92%);
+  margin: 120px auto 60px;
+  color: #fff;
+}
+
+/* 헤더 */
+.notice-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0 14px;
+}
+
+.notice-title{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: #fff;
+  text-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* 액션 버튼 */
+.btn-action{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 110px;
+  padding: 0 18px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.btn-action:hover{ background: rgba(255,255,255,.16); }
+
+/* 유리 카드 */
+.notice-card{
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+}
+
+/* 테이블 */
+.notice-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notice-table thead th{
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255,255,255,.88);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  white-space: nowrap;
+}
+
+.notice-table tbody td{
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.notice-table tbody tr:hover{
+  background: rgba(255,255,255,.06);
+}
+
+/* 링크 */
+.title-link{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+}
+.title-link:hover{ text-decoration: underline; }
+
+/* empty */
+.empty{
+  text-align: center;
+  padding: 26px 16px;
+  color: rgba(255,255,255,.75);
+}
+
+/* 홈으로 */
+.btn-home{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 110px;
+  padding: 0 18px;
+  margin-top: 14px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(0,0,0,.10);
+  color: #fff;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.btn-home:hover{ background: rgba(255,255,255,.10); }
+
+/* suggestions */
+#suggestions{
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,10,20,.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: none;
+}
+#suggestions .item{
+  padding: 10px 12px;
+  cursor: pointer;
+  color: rgba(255,255,255,.92);
+}
+#suggestions .item:hover{
+  background: rgba(255,255,255,.10);
+}
+#suggestions em{
+  background: rgba(255,255,255,.20);
+  font-style: normal;
+  font-weight: 900;
+  padding: 0 4px;
+  border-radius: 6px;
+}

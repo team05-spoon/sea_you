@@ -1,0 +1,195 @@
+/* ===============================
+   MemberList.css
+   - Main.css 위에 덮어쓰기(관리자 회원목록)
+   - 유리카드 + 테이블
+   =============================== */
+
+.member-main{
+  position: relative;
+  z-index: 5;
+  width: min(1100px, 92%);
+  margin: 120px auto 60px; /* 상단바 공간 */
+  color: #fff;
+}
+
+.member-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 12px;
+  margin: 10px 0 14px;
+}
+
+.member-title{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+  text-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.member-sub{
+  color: rgba(255,255,255,.75);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.member-card{
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+}
+
+.member-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.member-table thead th{
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(255,255,255,.88);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  white-space: nowrap;
+}
+
+.member-table tbody td{
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.member-table tbody tr:hover{
+  background: rgba(255,255,255,.06);
+}
+
+/* 회원번호 링크 */
+.id-link{
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+.id-link:hover{
+  text-decoration: underline;
+}
+
+/* 삭제 버튼 */
+.btn-danger{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,120,120,.35);
+  background: rgba(255,0,0,.12);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+.btn-danger:hover{
+  transform: translateY(-1px);
+  background: rgba(255,0,0,.18);
+}
+
+/* 데이터 없을 때 */
+.empty{
+  text-align: center;
+  padding: 26px 16px;
+  color: rgba(255,255,255,.75);
+}
+
+/* 홈으로 */
+.btn-home{
+  display: inline-block;
+  margin-top: 14px;
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.20);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.btn-home:hover{
+  background: rgba(255,255,255,.10);
+}
+
+/* 자동완성 suggestions Main.css에 없을 때 대비 */
+#suggestions{
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,10,20,.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: none;
+}
+#suggestions .item{
+  padding: 10px 12px;
+  cursor: pointer;
+  color: rgba(255,255,255,.92);
+}
+#suggestions .item:hover{
+  background: rgba(255,255,255,.10);
+}
+#suggestions em{
+  background: rgba(255,255,255,.20);
+  font-style: normal;
+  font-weight: 900;
+  padding: 0 4px;
+  border-radius: 6px;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 25px 0;
+}
+
+.page-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  background: rgba(0, 0, 0, 0.4); 
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.page-btn:hover {
+  background: #4a90e2; 
+  border-color: #4a90e2;
+  color: #fff;
+}
+
+.page-btn.active {
+  background: #4a90e2; 
+  color: #fff;
+  border-color: #4a90e2;
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+}
+

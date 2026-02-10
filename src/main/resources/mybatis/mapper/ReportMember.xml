@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sea_you.dao.ReportMemberDAO">
+
+    <insert id="insert" parameterType="com.sea_you.dto.ReportMemberDTO">
+        INSERT INTO reportmember (
+            rm_no, m_no, rm_nick, rm_ctg, rm_title, rm_content, rm_date
+        ) VALUES (
+            seq_reportmember.NEXTVAL, 
+            #{m_no, jdbcType=INTEGER}, 
+            #{rm_nick, jdbcType=VARCHAR}, 
+            #{rm_ctg, jdbcType=VARCHAR},
+            #{rm_title, jdbcType=VARCHAR},
+            #{rm_content, jdbcType=VARCHAR},
+            SYSDATE
+        )
+    </insert>
+
+    <select id="reportadminlist" resultType="com.sea_you.dto.ReportMemberDTO">
+        SELECT * FROM reportmember ORDER BY rm_no DESC
+    </select>
+    
+    <select id="reportviewDao" parameterType="int" resultType="com.sea_you.dto.ReportMemberDTO">
+        SELECT * FROM reportmember WHERE rm_no = #{rm_no}
+    </select>
+    
+    <delete id="reportDeleteDao" parameterType="int">
+        DELETE FROM reportmember WHERE rm_no = #{rm_no}
+    </delete>
+
+</mapper>

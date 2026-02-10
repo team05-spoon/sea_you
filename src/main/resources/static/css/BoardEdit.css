@@ -1,0 +1,162 @@
+html, body { height: 100%; }
+body { margin: 0; }
+
+.be-main {
+  position: relative;
+  z-index: 5;
+  width: min(900px, calc(100% - 40px));
+  margin: 130px auto 80px;
+  color: #fff;
+}
+
+.be-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px 30px 35px;
+}
+
+.be-head { margin-bottom: 16px; }
+
+.be-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.be-sub {
+  margin: 8px 0 0;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.be-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.be-row {
+  display: grid;
+  grid-template-columns: 110px 88%;
+  gap: 12px;
+  align-items: start;
+}
+
+.be-label {
+  padding-top: 10px;
+  font-weight: 900;
+  color: rgba(255,255,255,.92);
+}
+
+.be-input,
+.be-textarea {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: #fff;
+  padding: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.be-textarea {
+  min-height: 240px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.be-static {
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  font-weight: 900;
+}
+
+.be-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+  padding-right: calc(100% - 110px - 88% + 12px);
+}
+
+.btn-ghost,
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  min-width: 100px;
+  padding: 0 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0, 0, 0, 0.18);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover,
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.input-file-hidden {
+    display: none !important;
+}
+
+.file-upload-row {
+    display: flex !important; 
+    flex-direction: row !important; 
+    align-items: center !important;
+    gap: 15px;
+    grid-column: 2; 
+    margin-top: 10px;
+}
+
+.btn-file-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+}
+
+.file-name-display {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    word-break: break-all; 
+}
+
+.be-image-preview-img {
+    width: 120px; 
+    height: 120px;
+    object-fit: cover; 
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}

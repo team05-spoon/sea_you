@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sea_you.dao.MainDAO">
+
+    <select id="selectRecentNotices" resultType="com.sea_you.dto.NoticeDTO">
+        SELECT n_no, n_title, n_write, n_date 
+        FROM notice 
+        WHERE ROWNUM &lt;= 5
+        ORDER BY n_date DESC
+    </select>
+
+    <select id="selectRecentBoards" resultType="com.sea_you.dto.BoardDTO">
+        SELECT b_no, b_title, b_write, b_date 
+        FROM board 
+        WHERE ROWNUM &lt;= 5
+        ORDER BY b_date DESC
+    </select>
+	<select id="selectAllBeaches" resultType="com.sea_you.dto.BeachDTO">
+    SELECT * FROM (
+        SELECT 
+            bc_no, bc_name, bc_location, bc_office, 
+            bc_length, bc_width, bc_area, bc_image, es_id
+        FROM beach
+    )
+</select>
+	<select id="getBeachDetail" parameterType="int" resultType="com.sea_you.dto.BeachDTO">
+	        SELECT 
+	            bc_no, bc_name, bc_location, bc_office, 
+	            bc_length, bc_width, bc_area, bc_image, es_id
+	        FROM beach
+	        WHERE bc_no = #{bc_no}
+	    </select>
+	       <select id="getFollowerCount" resultType="int">
+       SELECT COUNT(*) 
+       FROM follow 
+       WHERE following_no = #{m_no}
+   </select>
+   <select id="searchBeaches" resultType="com.sea_you.dto.BeachDTO">
+        SELECT 
+            bc_no, bc_name, bc_location, bc_office, 
+            bc_length, bc_width, bc_area, bc_image, es_id
+        FROM beach
+        WHERE bc_name LIKE '%' || #{keyword} || '%' 
+           OR bc_location LIKE '%' || #{keyword} || '%'
+        ORDER BY bc_name ASC
+    </select>
+</mapper>

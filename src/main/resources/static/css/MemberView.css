@@ -1,0 +1,324 @@
+html, body { height: 100%; }
+body { margin: 0; }
+
+.member-main {
+  width: min(980px, 92%);
+  margin: 120px auto 70px;
+  color: #fff;
+}
+
+.member-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0 14px;
+}
+
+.member-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  text-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.member-card {
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 16px 44px rgba(0,0,0,.40);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  background: linear-gradient(90deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.card-title {
+  font-weight: 900;
+  font-size: 15px;
+  opacity: .95;
+}
+
+.card-sub {
+  font-weight: 800;
+  font-size: 13px;
+  opacity: .75;
+  margin-top: 2px;
+}
+
+.follow-pill {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.follow-pill .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.18);
+  text-shadow: 0 2px 10px rgba(0,0,0,.45);
+}
+
+.pill-label {
+  font-size: 12px;
+  opacity: .85;
+  font-weight: 800;
+}
+
+.follow-pill strong {
+  color: #00d4ff;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.card-body {
+  padding: 18px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.photo-cell {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.member-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 14px 34px rgba(0,0,0,.38);
+}
+
+.info, .detail-box {
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.row:last-child { border-bottom: none; }
+
+.label {
+  font-weight: 900;
+  color: rgba(255,255,255,.86);
+  white-space: nowrap;
+}
+
+.value {
+  color: rgba(255,255,255,.92);
+  word-break: break-word;
+}
+
+.section-head {
+  margin: 16px 0 10px;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 900;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.92);
+}
+
+.member-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 112px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.10);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.btn:hover { background: rgba(255,255,255,.16); }
+
+.btn.ghost {
+  background: rgba(0,0,0,.12);
+  border-color: rgba(255,255,255,.20);
+}
+
+.btn.ghost:hover { background: rgba(255,255,255,0.10); }
+
+.btn.danger {
+  border-color: rgba(255,120,120,.35);
+  background: rgba(255,80,80,.12);
+}
+
+.btn.danger:hover { background: rgba(255,80,80,.18); }
+
+.follow-style {
+  background: rgba(0,149,246,.85) !important;
+  border-color: rgba(0,149,246,.40) !important;
+  color: #fff !important;
+}
+
+.follow-style:hover { background: rgba(0,149,246,.95) !important; }
+
+.unfollow-style {
+  background: rgba(255,255,255,.88) !important;
+  color: #222 !important;
+  border-color: rgba(255,255,255,.55) !important;
+}
+
+.unfollow-style:hover { background: rgba(255,255,255,.96) !important; }
+
+.member-actions .back-right {
+  margin-left: auto;
+  order: 999;
+  white-space: nowrap;
+}
+
+#suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,10,20,.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: none;
+}
+
+#suggestions .item {
+  padding: 10px 12px;
+  cursor: pointer;
+  color: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+#suggestions .item:last-child { border-bottom: none; }
+#suggestions .item:hover { background: rgba(255,255,255,0.10); }
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 8px;
+}
+
+.member-card[style*="margin-top: 40px;"] {
+  margin-top: 25px !important;
+}
+
+.member-card[style*="margin-top: 40px;"] .member-head {
+  display: none;
+}
+
+.post-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+  display: block;
+}
+
+.post-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.post-item img.default-img {
+  object-fit: contain;
+  padding: 20%;
+  opacity: 0.5;
+}
+
+.post-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 15px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.post-item:hover .post-overlay {
+  opacity: 1;
+}
+
+.post-item:hover img {
+  transform: scale(1.1);
+}
+
+.post-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.empty {
+  grid-column: span 3;
+  text-align: center;
+  padding: 60px 0;
+  opacity: 0.5;
+  font-weight: 600;
+}

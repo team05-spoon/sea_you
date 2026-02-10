@@ -1,0 +1,112 @@
+html, body { height: 100%; }
+body { margin: 0; }
+
+.nd-main {
+  position: relative;
+  z-index: 5;
+  width: min(920px, calc(100% - 40px));
+  margin: 130px auto 80px;
+  color: #fff;
+}
+
+.nd-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 24px 28px;
+}
+
+.nd-head {
+  margin-bottom: 16px;
+}
+
+.nd-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.nd-date {
+  margin-top: 8px;
+  color: rgba(255,255,255,.78);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.nd-body {
+  border-top: 1px solid rgba(255,255,255,.14);
+  padding-top: 16px;
+}
+
+.nd-content {
+  white-space: pre-wrap;
+  line-height: 1.7;
+  color: rgba(255,255,255,.92);
+  font-size: 14px;
+}
+
+.nd-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inline-form {
+  display: inline-flex;
+  margin: 0;
+}
+
+.btn-ghost,
+.btn-primary,
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  min-width: 100px;
+  padding: 0 20px;
+  border-radius: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-ghost,
+.btn-primary {
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0, 0, 0, 0.18);
+  color: #fff;
+}
+
+.btn-ghost:hover,
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  border: 1px solid rgba(255, 120, 120, 0.35);
+  background: rgba(255, 0, 0, 0.12);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: rgba(255, 0, 0, 0.22);
+  transform: translateY(-1px);
+}
+
+.login-name {
+  font-weight: 900;
+  margin-right: 8px;
+}

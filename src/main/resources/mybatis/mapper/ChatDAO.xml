@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sea_you.dao.ChatDAO">
+
+  <insert id="writeDao" parameterType="com.sea_you.dto.ChatDTO">
+    INSERT INTO chat (c_no, m_no, m_nick, c_content, c_date)
+    VALUES (seq_chat.NEXTVAL, #{m_no}, #{m_nick}, #{c_content}, SYSDATE)
+  </insert>
+
+  <select id="listDao" resultType="com.sea_you.dto.ChatDTO">
+    SELECT * FROM (
+      SELECT
+        c.c_no,
+        c.m_no,
+        m.m_nick,
+        m.m_image,
+        c.c_content,
+        c.c_date
+      FROM chat c
+      JOIN member m ON c.m_no = m.m_no
+      ORDER BY c.c_no DESC
+    )
+    WHERE ROWNUM &lt;= 30
+    ORDER BY c_no ASC
+  </select>
+
+</mapper>

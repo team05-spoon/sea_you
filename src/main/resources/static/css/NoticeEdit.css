@@ -1,0 +1,111 @@
+html, body { height: 100%; }
+body { margin: 0; }
+
+.ne-main{
+  position: relative;
+  z-index: 5;
+  width: min(900px, calc(100% - 40px));
+  margin: 130px auto 80px;
+  color: #fff;
+}
+
+.ne-card{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 24px 28px;
+}
+
+.ne-head{ margin-bottom: 16px; }
+
+.ne-title{
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+}
+
+.ne-sub{
+  margin: 8px 0 0;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ne-form{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ne-row{
+  display: grid;
+  grid-template-columns: 110px 88%;
+  gap: 12px;
+  align-items: start;
+}
+
+.ne-label{
+  padding-top: 10px;
+  font-weight: 900;
+  color: rgba(255,255,255,.92);
+}
+
+.ne-input,
+.ne-textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color: #fff;
+  padding: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ne-textarea{
+  min-height: 240px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.ne-actions{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 6px;
+  padding-right: calc(100% - 110px - 88% + 12px);
+}
+
+.btn-ghost,
+.btn-primary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  width: 110px; 
+  padding: 0;
+  
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0, 0, 0, 0.18);
+  color: #fff;
+  font-weight: 900;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-ghost:hover,
+.btn-primary:hover{
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}

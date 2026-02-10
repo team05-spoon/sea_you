@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sea_you.dao.MessageDAO">
+
+	<select id="getUnreadCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM message 
+        WHERE recv_m_no = #{m_no} 
+          AND ms_read = 'N' 
+          AND recv_del = 'N'
+    </select>
+    
+    <select id="getMnoById" resultType="Integer">
+        SELECT m_no FROM member WHERE m_nick = #{nick}
+    </select>
+    
+    <insert id="writeDao">
+        INSERT INTO message (ms_no, send_m_no, recv_m_no, ms_content, ms_date)
+        VALUES (
+            seq_message.NEXTVAL, 
+            #{send_m_no}, 
+            (SELECT m_no FROM member WHERE m_nick = #{recv_nick}), 
+            #{ms_content},
+            SYSDATE
+        )
+    </insert>
+    
+    <select id="listDao" resultType="com.sea_you.dto.MessageDTO">
+        SELECT m.*, mem.m_nick AS send_nick, mem.m_image AS send_image
+        FROM message m 
+        JOIN member mem ON m.send_m_no = mem.m_no
+        WHERE m.recv_m_no = #{m_no} AND m.recv_del = 'N'
+        ORDER BY m.ms_date DESC
+    </select>
+    
+    <select id="sendlistDao" resultType="com.sea_you.dto.MessageDTO">
+        SELECT m.*, mem.m_nick AS recv_nick, mem.m_image AS recv_image
+        FROM message m 
+        JOIN member mem ON m.recv_m_no = mem.m_no
+        WHERE m.send_m_no = #{m_no} AND m.send_del = 'N'
+        ORDER BY m.ms_date DESC
+    </select>
+    
+    <select id="viewDao" resultType="com.sea_you.dto.MessageDTO">
+        SELECT m.*,
+            (SELECT m_nick FROM member WHERE m_no = m.send_m_no) AS send_nick,
+            (SELECT m_image FROM member WHERE m_no = m.send_m_no) AS send_image,
+            (SELECT m_nick FROM member WHERE m_no = m.recv_m_no) AS recv_nick,
+            (SELECT m_image FROM member WHERE m_no = m.recv_m_no) AS recv_image
+        FROM message m
+        WHERE ms_no = #{ms_no}
+    </select>
+    
+ <update id="updateDao">
+    UPDATE message SET ms_read = 'Y'  WHERE ms_no = #{ms_no} AND recv_m_no = #{m_no}
+</update>
+    
+    <update id="deleteDao">
+        UPDATE message 
+        <set>
+            <if test="type == 'recv'">recv_del = 'Y'</if>
+            <if test="type == 'sent'">send_del = 'Y'</if>
+        </set>
+        WHERE ms_no = #{ms_no}
+    </update>
+
+</mapper>

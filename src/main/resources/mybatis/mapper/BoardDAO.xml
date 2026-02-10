@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sea_you.dao.BoardDAO">
+
+
+<select id="boardlistDao" resultType="com.sea_you.dto.BoardDTO">
+  SELECT
+    b.b_no,
+    b.b_title,
+    b.b_write,
+    b.b_memo,
+    b.b_date,
+    b.m_no,
+    m.m_image,
+    b.b_image,
+    /* 음수 타겟 전략: 게시글 번호에 -1을 곱해 comment_likes 테이블에서 카운트 */
+    (SELECT COUNT(*) FROM comment_likes WHERE comment_id = (b.b_no * -1)) as b_like_count
+  FROM board b
+  JOIN member m ON b.m_no = m.m_no
+  ORDER BY b.b_no DESC
+</select>
+
+
+<select id="boardviewDao" parameterType="int" resultType="com.sea_you.dto.BoardDTO">
+    SELECT 
+        b.b_no, 
+        b.b_title, 
+        b.b_write, 
+        b.b_memo, 
+        b.b_date, 
+        b.m_no, 
+        b.b_image,
+        m.m_image  FROM board b
+    JOIN member m ON b.m_no = m.m_no
+    WHERE b.b_no = #{b_no}
+  </select>
+
+  <insert id="insert" parameterType="com.sea_you.dto.BoardDTO">
+    INSERT INTO board (
+      b_no, b_title, b_write, b_memo, b_date, m_no, b_image
+    ) VALUES (
+      seq_board.NEXTVAL,
+      #{b_title, jdbcType=VARCHAR},
+      #{b_write, jdbcType=VARCHAR},
+      #{b_memo,  jdbcType=VARCHAR},
+      SYSDATE,
+      #{m_no,    jdbcType=INTEGER},
+      #{b_image, jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <!-- =========================
+       게시글 수정
+  ========================== -->
+  <update id="update" parameterType="com.sea_you.dto.BoardDTO">
+    UPDATE board
+    SET
+      b_title = #{b_title, jdbcType=VARCHAR},
+      b_memo  = #{b_memo,  jdbcType=VARCHAR},
+      b_image = #{b_image, jdbcType=VARCHAR}
+    WHERE b_no = #{b_no, jdbcType=INTEGER}
+  </update>
+
+  <!-- =========================
+       게시글 삭제
+  ========================== -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM board
+    WHERE b_no = #{b_no}
+  </delete>
+	<select id="boardListByMemberDao" resultType="com.sea_you.dto.BoardDTO">
+	  SELECT
+	    b.b_no,
+	    b.b_title,
+	    b.b_write,
+	    b.b_memo,
+	    b.b_date,
+	    b.m_no,
+	    m.m_image,
+	    b.b_image
+	  FROM board b
+	  JOIN member m ON b.m_no = m.m_no
+	  WHERE b.m_no = #{m_no}
+	  ORDER BY b.b_no DESC
+	</select>
+	
+	<select id="checkBoardLike" resultType="int">
+  SELECT COUNT(*) FROM comment_likes 
+  WHERE comment_id = #{targetId} AND m_id = #{m_nick}  </select>
+
+<insert id="insertBoardLike">
+  INSERT INTO comment_likes (like_id, comment_id, m_id)
+  VALUES (comment_like_seq.NEXTVAL, #{targetId}, #{m_nick}) </insert>
+
+<delete id="deleteBoardLike">
+  DELETE FROM comment_likes 
+  WHERE comment_id = #{targetId} AND m_id = #{m_nick} </delete>
+
+<select id="getBoardLikeCount" resultType="int" parameterType="int">
+  SELECT COUNT(*) FROM comment_likes 
+  WHERE comment_id = #{targetId}
+</select>
+
+	
+</mapper>
